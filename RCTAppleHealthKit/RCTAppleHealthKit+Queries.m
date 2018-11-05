@@ -79,12 +79,24 @@
                 for (HKQuantitySample *sample in results) {
                     HKQuantity *quantity = sample.quantity;
                     double value = [quantity doubleValueForUnit:unit];
+                    
+                    NSNumber *timeID = [[NSNumber alloc] init];
+                    timeID = [NSNumber numberWithInt:99];
+                    
+                    if (@available(iOS 11.0, *)) {
+                        if (sample.metadata[HKMetadataKeyBloodGlucoseMealTime]) {
+                            timeID = sample.metadata[HKMetadataKeyBloodGlucoseMealTime];
+                        };
+                    } else {
+                        // Fallback on earlier versions
+                    }
 
                     NSString *startDateString = [RCTAppleHealthKit buildISO8601StringFromDate:sample.startDate];
                     NSString *endDateString = [RCTAppleHealthKit buildISO8601StringFromDate:sample.endDate];
 
                     NSDictionary *elem = @{
                             @"value" : @(value),
+                            @"timeID" : timeID,
                             @"startDate" : startDateString,
                             @"endDate" : endDateString,
                     };
