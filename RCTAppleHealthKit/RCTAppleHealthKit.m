@@ -102,6 +102,11 @@ RCT_EXPORT_METHOD(getBodyFatPercentageSamples:(NSDictionary *)input callback:(RC
     [self body_getBodyFatPercentageSamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(getBodyFatPercentageSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+    [self body_getBodyFatPercentageSamples:input callback:callback];
+}
+
 RCT_EXPORT_METHOD(getLatestLeanBodyMass:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self body_getLatestLeanBodyMass:input callback:callback];
