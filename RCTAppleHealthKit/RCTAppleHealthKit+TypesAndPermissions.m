@@ -52,6 +52,7 @@
                                     @"SleepAnalysis" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis],
                                     // Mindfulness
                                     @"MindfulSession" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession],
+                                    @"Workout" : [HKObjectType workoutType],
                                     };
         return readPerms;
     } else {
@@ -90,6 +91,7 @@
                                     @"SleepAnalysis" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis],
                                     // Mindfulness
                                     @"MindfulSession" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession],
+                                    @"Workout" : [HKObjectType workoutType],
                                     };
         return readPerms;
     }
@@ -156,6 +158,7 @@
         @"SleepAnalysis" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis],
         // Mindfulness
         @"MindfulSession" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession],
+        @"Workout" : [HKObjectType workoutType],
     };
     return writePerms;
 }
