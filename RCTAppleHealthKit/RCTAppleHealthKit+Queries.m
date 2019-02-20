@@ -84,6 +84,9 @@
                     NSNumber *timeID = [[NSNumber alloc] init];
                     timeID = [NSNumber numberWithInt:99];
                     
+                    NSNumber *isUserEntered = [[NSNumber alloc] init];
+                    isUserEntered = [NSNumber numberWithInt:0];
+                    
                     if (@available(iOS 11.0, *)) {
                         if (sample.metadata[HKMetadataKeyBloodGlucoseMealTime]) {
                             timeID = sample.metadata[HKMetadataKeyBloodGlucoseMealTime];
@@ -91,6 +94,10 @@
                     } else {
                         // Fallback on earlier versions
                     }
+                    
+                    if (sample.metadata[HKMetadataKeyWasUserEntered]) {
+                        isUserEntered = sample.metadata[HKMetadataKeyWasUserEntered];
+                    };
 
                     NSString *startDateString = [RCTAppleHealthKit buildISO8601StringFromDate:sample.startDate];
                     NSString *endDateString = [RCTAppleHealthKit buildISO8601StringFromDate:sample.endDate];
@@ -100,6 +107,7 @@
                             @"timeID" : timeID,
                             @"startDate" : startDateString,
                             @"endDate" : endDateString,
+                            @"isUserEntered" : isUserEntered,
                     };
 
                     [data addObject:elem];
