@@ -484,6 +484,7 @@
                     NSNumber *activityNumber =  [NSNumber numberWithInt: [sample workoutActivityType]];
                     
                     NSDictionary *elem = @{
+                                           @"id": activityNumber,
                                            @"activityName" : [numberToWorkoutNameDictionary objectForKey: activityNumber],
                                            @"calories" : @(energy),
                                            @"distance" : @(distance),
