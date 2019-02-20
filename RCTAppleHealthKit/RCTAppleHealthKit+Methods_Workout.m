@@ -13,6 +13,7 @@
 - (void)workout_get:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
 {
     NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+    HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit mileUnit]];
     BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
     NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:[NSDate date]];
     NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
@@ -34,6 +35,7 @@
     };
     
     [self fetchWorkoutForPredicate: predicate
+                              unit: unit
                          ascending:ascending
                              limit:limit
                         completion:completion];

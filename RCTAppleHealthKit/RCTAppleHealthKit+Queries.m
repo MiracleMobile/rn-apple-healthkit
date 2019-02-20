@@ -459,6 +459,7 @@
 }
 
 - (void)fetchWorkoutForPredicate: (NSPredicate *)predicate
+                            unit:(HKUnit *)unit
                        ascending: (BOOL)ascending
                            limit:(NSUInteger)limit
                       completion:(void (^)(NSArray *, NSError *))completion {
@@ -480,7 +481,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 for (HKWorkout * sample in results) {
                     double energy = [[sample totalEnergyBurned] doubleValueForUnit:[HKUnit kilocalorieUnit]];
-                    double distance = [[sample totalDistance] doubleValueForUnit:[HKUnit mileUnit]];
+                    double distance = [[sample totalDistance] doubleValueForUnit: unit];
                     NSNumber *activityNumber =  [NSNumber numberWithInt: [sample workoutActivityType]];
                     
                     NSDictionary *elem = @{
